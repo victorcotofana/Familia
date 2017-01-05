@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1483654632 source:c:\users\user\dropbox\faculta\c++\repositories\familia\familia\main.cpp
+	<iostream>
+	<stdio.h>
+	<string>
+	<string.h>
+	<fstream>
+	<vector>
+

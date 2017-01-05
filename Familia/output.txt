@@ -1,0 +1,88 @@
+GrandPa1->Father
+ adassa :: 1
+GrandMa1->Father
+ adassa :: 1
+GrandPa2->Mother
+ adassa :: 1
+GrandMa2->Mother
+ adassa :: 1
+Father->Me
+ adassa :: 1
+Mother->Me
+ adassa :: 1
+
+NG:GrandPa1 M
+GN:M
+NP:GrandPa1
+NG:GrandMa1 F
+GN:F
+NP:GrandMa1
+NG:GrandPa2 M
+GN:M
+NP:GrandPa2
+NG:GrandMa2 F
+GN:F
+NP:GrandMa2
+NG:Mother F
+GN:F
+NP:Mother
+NG:Father M
+GN:M
+NP:Father
+NG:Me M
+GN:M
+NP:Me
+
+Lista persoane:
+Persoana  1 : 
+Nume    : GrandPa1
+Genul   : M
+Partener: GrandMa1
+Nr. Copii : 1
+Copil 1 : Father
+
+Persoana  2 : 
+Nume    : Father
+Genul   : M
+Parinte1: GrandPa1
+Parinte2: GrandMa1
+Partener: Mother
+Nr. Copii : 1
+Copil 1 : Me
+
+Persoana  3 : 
+Nume    : GrandMa1
+Genul   : F
+Partener: GrandPa1
+Nr. Copii : 1
+Copil 1 : Father
+
+Persoana  4 : 
+Nume    : GrandPa2
+Genul   : M
+Partener: GrandMa2
+Nr. Copii : 1
+Copil 1 : Mother
+
+Persoana  5 : 
+Nume    : Mother
+Genul   : F
+Parinte1: GrandPa2
+Parinte2: GrandMa2
+Partener: Father
+Nr. Copii : 1
+Copil 1 : Me
+
+Persoana  6 : 
+Nume    : GrandMa2
+Genul   : F
+Partener: GrandPa2
+Nr. Copii : 1
+Copil 1 : Mother
+
+Persoana  7 : 
+Nume    : Me
+Genul   : M
+Parinte1: Father
+Parinte2: Mother
+
