@@ -164,27 +164,16 @@ bool gasireaRamureiAnComun(persoanaStruct *ancestor, vector<string> &ramura, str
             }
         };
     }
-    /*
-    if (ancestor->partener != 0){
-        cout << "Ancestor Partener" << endl;
-        if(gasireaRamureiAnComun(ancestor->partener,ramura,numePersoana)){
-            return true;
-        }else return false;
-    }
-    */
-    if(!ramura.empty()){
-        ramura.pop_back();
-    }
+    ramura.pop_back();
     return false;
 }
 
-string gasireaAncestruluiComun(string primaPersoana, string aDouaPersoana){
+string gasireaAncestruluiComunRude(string primaPersoana, string aDouaPersoana){
     vector<string> ramura1,ramura2;
     string ancestorComun;
     for(int i=0; i < listaPersoane.size(); i++){
         if((listaPersoane[i]->parinte1 == 0) && (listaPersoane[i]->parinte2 == 0)){
             if(!gasireaRamureiAnComun(listaPersoane[i], ramura1, primaPersoana) || !gasireaRamureiAnComun(listaPersoane[i], ramura2, aDouaPersoana)){
-                //return "\0";
                 ramura1.clear();
                 ramura2.clear();
                 continue;
@@ -215,6 +204,89 @@ string gasireaAncestruluiComun(string primaPersoana, string aDouaPersoana){
     }
 }
 
+bool gasireaRamureiAnComunAfini(persoanaStruct *rudaAfinaComuna,bool vineAfin, string numeExclusPartener , string numeExclusCopil, vector<string> &ramura, string numePersoana){
+    if (rudaAfinaComuna == 0) return false;
+    cout << "##" << rudaAfinaComuna->nume << endl;
+    ramura.push_back(rudaAfinaComuna->nume);
+    if (rudaAfinaComuna->nume == numePersoana) return true;
+
+    if ((rudaAfinaComuna->partener != 0)&&(rudaAfinaComuna->partener->nume != numeExclusPartener)){
+        if (gasireaRamureiAnComunAfini(rudaAfinaComuna->partener, 1, rudaAfinaComuna->nume, "", ramura, numePersoana)){
+            return true;
+        }
+    }
+
+    if(vineAfin == 1){
+        if((rudaAfinaComuna->parinte1 != 0 )&&(rudaAfinaComuna->parinte2 != 0)){
+            if (gasireaRamureiAnComunAfini(rudaAfinaComuna->parinte1, 1, rudaAfinaComuna->parinte2->nume, rudaAfinaComuna->nume, ramura ,numePersoana)){
+                return true;
+            }
+            if (gasireaRamureiAnComunAfini(rudaAfinaComuna->parinte2, 1, rudaAfinaComuna->parinte1->nume, rudaAfinaComuna->nume, ramura ,numePersoana)){
+                return true;
+            }
+        }
+        if((rudaAfinaComuna->partener->parinte1 != 0 )&&(rudaAfinaComuna->partener->parinte2 == 0)){
+            if(gasireaRamureiAnComunAfini(rudaAfinaComuna->parinte1, 1, "", rudaAfinaComuna->nume, ramura, numePersoana)){
+                return true;
+            }
+        }
+        if((rudaAfinaComuna->parinte1 == 0 )&&(rudaAfinaComuna->parinte2 != 0)){
+            if(gasireaRamureiAnComunAfini(rudaAfinaComuna->parinte2, 1, rudaAfinaComuna->parinte1->nume, rudaAfinaComuna->nume, ramura, numePersoana)){
+                return true;
+            }
+        }
+    }
+
+    if (rudaAfinaComuna->nrCopii != 0){
+        for(int i=0; i < rudaAfinaComuna->nrCopii; i++){
+            if (rudaAfinaComuna->copii[i]->nume != numeExclusCopil){
+                if (gasireaRamureiAnComunAfini(rudaAfinaComuna->copii[i], 0, "", "", ramura, numePersoana)){
+                    return true;
+                    break;
+                }
+            }
+        };
+    }
+
+    ramura.pop_back();
+    return false;
+}
+
+string gasireaAncestruluiComunRudeAfine(string primaPersoana, string aDouaPersoana){
+    vector<string> ramura1,ramura2;
+    string ancestorComun;
+    for(int i=0; i < listaPersoane.size(); i++){
+        if((listaPersoane[i]->parinte1 == 0) && (listaPersoane[i]->parinte2 == 0)){
+            if(!gasireaRamureiAnComunAfini(listaPersoane[i],0,"","", ramura1, primaPersoana) || !gasireaRamureiAnComunAfini(listaPersoane[i],0,"","", ramura2, aDouaPersoana)){
+                ramura1.clear();
+                ramura2.clear();
+                continue;
+            }
+        };
+        int j;
+        for(j = 0; j < ramura1.size() && j < ramura2.size(); j++ ){
+            if(ramura1[j] != ramura2[j]) break;
+        }
+        ancestorComun = ramura1[j-1];
+        for(int k=0; k < j-1; k++){
+            if(ramura1[0] == ramura2[0]){
+            ramura1.erase(ramura1.begin());
+            ramura2.erase(ramura2.begin());
+            }
+        }
+        cout << "Ramura 1: ";
+        for(int i=0; i < ramura1.size(); i++){
+            cout << ramura1[i] << ' ';
+        }
+        cout << endl;
+        cout << "Ramura 2: ";
+        for(int i=0; i < ramura2.size(); i++){
+            cout << ramura2[i] << ' ';
+        }
+        cout << endl;
+        return ancestorComun;
+    }
+}
 
 int main()
 {
@@ -222,14 +294,34 @@ int main()
     citireCreareArboreGenealogic();
     afisareListaPersoane();
 
+    bool estePrimaPersoana = false , esteADouaPersoana = false;
     string primaPersoana, aDouaPersoana;
+    cout << "Prima persoana : " ;
     cin >> primaPersoana;
+    cout << "A doua persoana: " ;
     cin >> aDouaPersoana;
     cout << "Prima Persoana : " << primaPersoana << endl;
     cout << "A Doua Persoana: " << aDouaPersoana << endl;
-    cout << "Este prima persoana?  " << gasireaUneiPersoane(primaPersoana) << endl;
-    cout << "Este a doua persoana? " << gasireaUneiPersoane(aDouaPersoana) << endl;
-    if(gasireaUneiPersoane(primaPersoana)&&gasireaUneiPersoane(aDouaPersoana)){
-        cout << "Ancestrul Comun: " << gasireaAncestruluiComun(primaPersoana,aDouaPersoana) << endl;
-    };
+    //cout << "Este prima persoana?  " << gasireaUneiPersoane(primaPersoana) << endl;
+    //cout << "Este a doua persoana? " << gasireaUneiPersoane(aDouaPersoana) << endl;
+    estePrimaPersoana = gasireaUneiPersoane(primaPersoana);
+    esteADouaPersoana = gasireaUneiPersoane(aDouaPersoana);
+    if(estePrimaPersoana && esteADouaPersoana){
+        string ancestrulComun = gasireaAncestruluiComunRude(primaPersoana,aDouaPersoana);
+        if( ancestrulComun !="\0"){
+            cout << primaPersoana << " si " << aDouaPersoana << " sunt Rude de singe." << endl;
+            cout << "Ancestrul Comun: " << ancestrulComun << endl;
+        }else{
+            cout << primaPersoana << " si " << aDouaPersoana << " sunt Rude prin alianta." << endl;
+            cout << "Ruda Comuna : " << gasireaAncestruluiComunRudeAfine(primaPersoana,aDouaPersoana) << endl;
+        }
+    }else{
+        if (estePrimaPersoana == 0){
+            cout << primaPersoana << " nu este in arborele genealogic introdus." << endl;
+        }
+        if (esteADouaPersoana ==0){
+            cout << aDouaPersoana << " nu este in arborele genealogic introdus." << endl;
+        }
+    }
+
 }
