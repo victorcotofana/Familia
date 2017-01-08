@@ -7,10 +7,20 @@
 #include "codRelGen.h"
 using namespace std;
 
+struct relatieDouaPers{
+    string primaPersoana;
+    string aDouaPersoana;
+    string tipLegatura;
+    vector<persoanaStruct*> ramuraCompleta;
+    string ancestorComun;
+    string codRelatie;
+    string relatia;
+    string gradulDeRudenie;
+} ;
+
 vector<persoanaStruct*> listaPersoane;
 
 string codRelatiaGenealogica(vector<persoanaStruct*> ramuraCompleta);
-string relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct* aDouaPersoana);
 
 void adaugarePersoanaInVector(string nume){
     bool esteInVector = false;
@@ -38,26 +48,19 @@ void adaugareGenulPersoaneiInVector(string nume,char genul){
 
 void adaugareaRelatieiParinteCopil(string parinte, string copil){
     int pozitiaCopil = 0;
-    for(int i=0;i<listaPersoane.size();i++){
+    for(int i=0; i < listaPersoane.size(); i++){
         if(listaPersoane[i]->nume == copil){
             pozitiaCopil = i;
         }
     }
-    for(int i=0;i<listaPersoane.size();i++){
+    for(int i=0; i < listaPersoane.size() ;i++){
         if(listaPersoane[i]->nume == parinte){
             if(listaPersoane[pozitiaCopil]->parinte1 == 0){
                 listaPersoane[pozitiaCopil]->parinte1 = listaPersoane[i];
             }else{
                 listaPersoane[pozitiaCopil]->parinte2 = listaPersoane[i];
-            }
-
-            if(listaPersoane[i]->nrCopii == 0){
-                listaPersoane[i]->nrCopii = 1;
-                listaPersoane[i]->copii[0] = listaPersoane[pozitiaCopil];
-            }else{
-                listaPersoane[i]->nrCopii = listaPersoane[i]->nrCopii + 1;
-                listaPersoane[i]->copii[listaPersoane[i]->nrCopii - 1] = listaPersoane[pozitiaCopil];
-            }
+            };
+            listaPersoane[i]->copii.push_back(listaPersoane[pozitiaCopil]);
         }
     }
 }
@@ -77,7 +80,6 @@ void citireCreareArboreGenealogic(){
     ifstream inputFile;
     inputFile.open("input2.txt",ifstream::in);
     while((getline(inputFile,opIntrare,'('))&&((opIntrare=="parent")||(opIntrare=="\nparent"))){
-        if(inputFile.eof())break;
         getline(inputFile, numeParinte, ',');
         adaugarePersoanaInVector(numeParinte);
         getline(inputFile, numeCopil, ')');
@@ -92,7 +94,7 @@ void citireCreareArboreGenealogic(){
         if((numeGenPersoana.find("parent")!=0)&&((numeGenPersoana.find("\nparent"))!=0)){
             int length = numeGenPersoana.length();
             genPersoana = numeGenPersoana[length-1];
-            numePersoana=numeGenPersoana;
+            numePersoana = numeGenPersoana;
             numePersoana.resize(length-2);
             adaugareGenulPersoaneiInVector(numePersoana,genPersoana);
         };
@@ -120,10 +122,10 @@ void afisareListaPersoane(){
             outputFile << "Partener: " << listaPersoane[i]->partener->nume << endl;
         }
 
-        if(listaPersoane[i]->nrCopii != 0){
-            outputFile << "Nr. Copii : " << listaPersoane[i]->nrCopii << endl;
+        if(listaPersoane[i]->copii.size() != 0){
+            outputFile << "Nr. Copii : " << listaPersoane[i]->copii.size() << endl;
 
-            for(int j=0;j<listaPersoane[i]->nrCopii;j++){
+            for(int j=0;j<listaPersoane[i]->copii.size(); j++){
                 if(listaPersoane[i]->copii[j]!=0){
                     outputFile << "Copil " << j+1 << " : " << listaPersoane[i]->copii[j]->nume << endl;
                 }
@@ -149,8 +151,8 @@ bool gasireaRamureiAnComun(persoanaStruct *ancestor, vector<persoanaStruct*> &ra
     if (ancestor == 0) return false;
     ramura.push_back(ancestor);
     if (ancestor->nume == numePersoana) return true;
-    if (ancestor->nrCopii != 0){
-        for(int i=0; i < ancestor->nrCopii; i++){
+    if (ancestor->copii.size() != 0){
+        for(int i=0; i < ancestor->copii.size(); i++){
             if (gasireaRamureiAnComun(ancestor->copii[i],ramura,numePersoana)){
                 return true;
                 break;
@@ -161,9 +163,12 @@ bool gasireaRamureiAnComun(persoanaStruct *ancestor, vector<persoanaStruct*> &ra
     return false;
 }
 
-string gasireaAncestruluiComunRude(string primaPersoana, string aDouaPersoana){
+relatieDouaPers gasireaAncestruluiComunRude(string primaPersoana, string aDouaPersoana){
+    relatieDouaPers relatieDouaRude;
     vector<persoanaStruct*> ramura1, ramura2, ramuriConcatinate;
-    string ancestorComun;
+    relatieDouaRude.primaPersoana = primaPersoana;
+    relatieDouaRude.aDouaPersoana = aDouaPersoana;
+    relatieDouaRude.tipLegatura = "Rude de singe";
     for(int i=0; i < listaPersoane.size(); i++){
         if((listaPersoane[i]->parinte1 == 0) && (listaPersoane[i]->parinte2 == 0)){
             if(!gasireaRamureiAnComun(listaPersoane[i], ramura1, primaPersoana) || !gasireaRamureiAnComun(listaPersoane[i], ramura2, aDouaPersoana)){
@@ -175,7 +180,7 @@ string gasireaAncestruluiComunRude(string primaPersoana, string aDouaPersoana){
             for(j = 0; j < ramura1.size() && j < ramura2.size(); j++ ){
                 if(ramura1[j] != ramura2[j]) break;
             }
-            ancestorComun = ramura1[j-1]->nume;
+            relatieDouaRude.ancestorComun = ramura1[j-1]->nume;
 
             for(int k=0; k < j-1; k++){
                 if(ramura1[0]->nume == ramura2[0]->nume){
@@ -183,30 +188,28 @@ string gasireaAncestruluiComunRude(string primaPersoana, string aDouaPersoana){
                 ramura2.erase(ramura2.begin());
                 }
             }
-            cout << "Ramura 1: ";
+            /*
+            cout << "Ramura " << primaPersoana << " -> " << relatieDouaRude.ancestorComun << " : " ;
             for(int i=0; i < ramura1.size(); i++){
                 cout << ramura1[i]->nume << ' ';
             }
             cout << endl;
-            cout << "Ramura 2: ";
+            cout << "Ramura " << aDouaPersoana << " -> " << relatieDouaRude.ancestorComun << " : ";
             for(int i=0; i < ramura2.size(); i++){
                 cout << ramura2[i]->nume << ' ';
             }
             cout << endl;
-
+            */
             for(int i=ramura1.size()-1; i >= 0; i--){
                 ramuriConcatinate.push_back(ramura1[i]);
             }
             for(int i=1; i < ramura2.size(); i++){
                 ramuriConcatinate.push_back(ramura2[i]);
             }
-            cout << "Ramura Completa: ";
-            for(int i=0; i < ramuriConcatinate.size();i++){
-                cout << ramuriConcatinate[i]->nume << ' ';
-            }
-            cout << endl;
+            relatieDouaRude.ramuraCompleta = ramuriConcatinate;
+
             string codulRelatieiGenealogice = codRelatiaGenealogica(ramuriConcatinate);
-            cout << "THE CODE : " << codulRelatieiGenealogice << endl;
+            relatieDouaRude.codRelatie = codulRelatieiGenealogice;
 
             persoanaStruct* aDouaPersoanaPointer;
             for(int i=0; i < listaPersoane.size(); i++){
@@ -215,10 +218,11 @@ string gasireaAncestruluiComunRude(string primaPersoana, string aDouaPersoana){
                 }
             };
 
-            string relatiaGen = relatiaGenealogica(codulRelatieiGenealogice, aDouaPersoanaPointer);
-            cout << "!Relatia : " << relatiaGen << endl;
+            relatiaSiGradul relatiaGen = relatiaGenealogica(codulRelatieiGenealogice, aDouaPersoanaPointer);
+            relatieDouaRude.relatia = relatiaGen.relatiaGenealogica;
+            relatieDouaRude.gradulDeRudenie = relatiaGen.gradDeRudenie;
 
-            return ancestorComun;
+            return relatieDouaRude;
         }
     }
 }
@@ -255,8 +259,8 @@ bool gasireaRamureiAnComunAfini(persoanaStruct *rudaAfinaComuna,bool vineAfin, s
         }
     }
 
-    if (rudaAfinaComuna->nrCopii != 0){
-        for(int i=0; i < rudaAfinaComuna->nrCopii; i++){
+    if (rudaAfinaComuna->copii.size() != 0){
+        for(int i=0; i < rudaAfinaComuna->copii.size(); i++){
             if (rudaAfinaComuna->copii[i]->nume != numeExclusCopil){
                 if (gasireaRamureiAnComunAfini(rudaAfinaComuna->copii[i], 0, "", "", ramura, numePersoana)){
                     return true;
@@ -270,9 +274,12 @@ bool gasireaRamureiAnComunAfini(persoanaStruct *rudaAfinaComuna,bool vineAfin, s
     return false;
 }
 
-string gasireaAncestruluiComunRudeAfine(string primaPersoana, string aDouaPersoana){
+relatieDouaPers gasireaAncestruluiComunRudeAfine(string primaPersoana, string aDouaPersoana){
+    relatieDouaPers relatieDouaAfine;
     vector<persoanaStruct*> ramura1,ramura2,ramuriConcatinate;
-    string ancestorComun ;
+    relatieDouaAfine.primaPersoana = primaPersoana;
+    relatieDouaAfine.aDouaPersoana = aDouaPersoana;
+    relatieDouaAfine.tipLegatura = "Rude afine";
     for(int i=0; i < listaPersoane.size(); i++){
         if((listaPersoane[i]->parinte1 == 0) && (listaPersoane[i]->parinte2 == 0)){
             if(!gasireaRamureiAnComunAfini(listaPersoane[i],0,"","", ramura1, primaPersoana) || !gasireaRamureiAnComunAfini(listaPersoane[i],0,"","", ramura2, aDouaPersoana)){
@@ -285,37 +292,46 @@ string gasireaAncestruluiComunRudeAfine(string primaPersoana, string aDouaPersoa
         for(j = 0; j < ramura1.size() && j < ramura2.size(); j++ ){
             if(ramura1[j] != ramura2[j]) break;
         }
-        ancestorComun = ramura1[j-1]->nume;
+
+        relatieDouaAfine.ancestorComun = ramura1[j-1]->nume;
+
         for(int k=0; k < j-1; k++){
             if(ramura1[0] == ramura2[0]){
             ramura1.erase(ramura1.begin());
             ramura2.erase(ramura2.begin());
             }
         }
-        cout << "Ramura 1: ";
+        /*
+        cout << "Ramura " << primaPersoana << " -> " << relatieDouaAfine.ancestorComun << " : ";
         for(int i=0; i < ramura1.size(); i++){
             cout << ramura1[i]->nume << ' ';
         }
         cout << endl;
-        cout << "Ramura 2: ";
+        cout << "Ramura " << aDouaPersoana << " -> " << relatieDouaAfine.ancestorComun << " : ";
         for(int i=0; i < ramura2.size(); i++){
             cout << ramura2[i]->nume << ' ';
         }
         cout << endl;
+        */
         for(int i=ramura1.size()-1; i >= 0; i--){
             ramuriConcatinate.push_back(ramura1[i]);
         }
         for(int i=1; i < ramura2.size(); i++){
             ramuriConcatinate.push_back(ramura2[i]);
         }
-        cout << "Ramura Completa: ";
-        for(int i=0; i < ramuriConcatinate.size();i++){
-            cout << ramuriConcatinate[i]->nume << ' ';
+        //&&( ramuriConcatinate[i-1]->partener == ramuriConcatinate[i])
+        for(int i=1; i < ramuriConcatinate.size()-1; i++){
+            if((( ramuriConcatinate[i]->partener == ramuriConcatinate[i+1] )&&(( ramuriConcatinate[i]->parinte1 != ramuriConcatinate[i-1] )&&( ramuriConcatinate[i]->parinte2 != ramuriConcatinate[i-1] ))) )
+                {
+                ramuriConcatinate.erase(ramuriConcatinate.begin()+i);
+            }
         }
-        cout << endl;
+
+
+        relatieDouaAfine.ramuraCompleta = ramuriConcatinate;
 
         string codulRelatieiGenealogice = codRelatiaGenealogica(ramuriConcatinate);
-        cout << "THE CODE : " << codulRelatieiGenealogice << endl;
+        relatieDouaAfine.codRelatie = codulRelatieiGenealogice;
 
         persoanaStruct* aDouaPersoanaPointer;
         for(int i=0; i < listaPersoane.size(); i++){
@@ -324,10 +340,11 @@ string gasireaAncestruluiComunRudeAfine(string primaPersoana, string aDouaPersoa
             }
         }
 
-        string relatiaGen = relatiaGenealogica(codulRelatieiGenealogice, aDouaPersoanaPointer);
-        cout << "!Relatia : " << relatiaGen << endl;
+        relatiaSiGradul relatiaGen = relatiaGenealogica(codulRelatieiGenealogice, aDouaPersoanaPointer);
+        relatieDouaAfine.relatia = relatiaGen.relatiaGenealogica;
+        relatieDouaAfine.gradulDeRudenie = relatiaGen.gradDeRudenie;
 
-        return ancestorComun;
+        return relatieDouaAfine;
     }
 }
 
@@ -340,8 +357,8 @@ string codRelatiaGenealogica(vector<persoanaStruct*> ramuraCompleta){
         if (ramuraCompleta[i]->parinte2 == ramuraCompleta[i+1]){
             relatiaGenealogica += 'A';
         }
-        if (ramuraCompleta[i]->nrCopii != 0){
-            for(int j=0; j < ramuraCompleta[i]->nrCopii; j++ ){
+        if (ramuraCompleta[i]->copii.size() != 0){
+            for(int j=0; j < ramuraCompleta[i]->copii.size(); j++ ){
                 if(ramuraCompleta[i]->copii[j]->nume == ramuraCompleta[i+1]->nume){
                     relatiaGenealogica += 'B';
                     break;
@@ -358,7 +375,6 @@ string codRelatiaGenealogica(vector<persoanaStruct*> ramuraCompleta){
 
 int main()
 {
-    //freopen("output2.txt","w",stdout);
     citireCreareArboreGenealogic();
     afisareListaPersoane();
 
@@ -371,14 +387,30 @@ int main()
     estePrimaPersoana = gasireaUneiPersoane(primaPersoana);
     esteADouaPersoana = gasireaUneiPersoane(aDouaPersoana);
     if(estePrimaPersoana && esteADouaPersoana){
-        string ancestrulComun = gasireaAncestruluiComunRude(primaPersoana,aDouaPersoana);
-        if( ancestrulComun != "\0"){
-            cout << primaPersoana << " si " << aDouaPersoana << " sunt Rude de singe." << endl;
-            cout << "Ancestrul Comun: " << ancestrulComun << endl;
+        relatieDouaPers relatiaDintrePersoane = gasireaAncestruluiComunRude(primaPersoana,aDouaPersoana);
+        if( relatiaDintrePersoane.ancestorComun!= "\0"){
+            cout << "Forma de Rudenie : " << relatiaDintrePersoane.tipLegatura << endl;
+            cout << "Stramosul Comun  : " << relatiaDintrePersoane.ancestorComun << endl;
+            cout << "Ramura Completa  : ";
+            for(int i=0; i < relatiaDintrePersoane.ramuraCompleta.size(); i++){
+                cout << relatiaDintrePersoane.ramuraCompleta[i]->nume << ' ';
+            }
+            cout << endl;
+            cout << "Codul Relatiei   : " << relatiaDintrePersoane.codRelatie << endl;
+            cout << "Gradul de rudenie: " << relatiaDintrePersoane.gradulDeRudenie << endl;
+            cout << "Relatie          : " << relatiaDintrePersoane.relatia << endl;
         }else{
-            string ancestrulComunAfin = gasireaAncestruluiComunRudeAfine(primaPersoana,aDouaPersoana);
-            cout << primaPersoana << " si " << aDouaPersoana << " sunt Rude prin alianta." << endl;
-            cout << "Ruda Comuna : " << ancestrulComunAfin << endl;
+            relatieDouaPers relatieAfina = gasireaAncestruluiComunRudeAfine(primaPersoana,aDouaPersoana);
+            cout << "Forma de Rudenie : " << relatieAfina.tipLegatura << endl;
+            cout << "Ruda Comuna      : " << relatieAfina.ancestorComun << endl;
+            cout << "Ramura Completa  : ";
+            for(int i=0; i < relatieAfina.ramuraCompleta.size(); i++){
+                cout << relatieAfina.ramuraCompleta[i]->nume << ' ';
+            }
+            cout << endl;
+            cout << "Codul Relatiei   : " << relatieAfina.codRelatie << endl;
+            cout << "Gradul de rudenie: " << relatieAfina.gradulDeRudenie << endl;
+            cout << "Relatie          : " << relatieAfina.relatia << endl;
         }
     }else{
         if (estePrimaPersoana == 0){
@@ -388,6 +420,4 @@ int main()
             cout << aDouaPersoana << " nu este in arborele genealogic introdus." << endl;
         }
     }
-    listaPersoane.clear();
-    listaPersoane.shrink_to_fit();
 }

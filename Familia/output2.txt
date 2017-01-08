@@ -1,6 +1,6 @@
 Lista persoane:
 Persoana  1 : 
-Nume    : Strassbunic1
+Nume    : Strastrastrabunic1
 Genul   : M
 Nr. Copii : 1
 Copil 1 : Strastrabunic1
@@ -8,7 +8,7 @@ Copil 1 : Strastrabunic1
 Persoana  2 : 
 Nume    : Strastrabunic1
 Genul   : M
-Parinte1: Strassbunic1
+Parinte1: Strastrastrabunic1
 Nr. Copii : 1
 Copil 1 : Strabunic1
 
@@ -137,8 +137,9 @@ Genul   : M
 Parinte1: Tata
 Parinte2: Mama
 Partener: Sotie
-Nr. Copii : 1
+Nr. Copii : 2
 Copil 1 : Fiu
+Copil 2 : Fiica
 
 Persoana  19 : 
 Nume    : Sora
@@ -180,6 +181,9 @@ Nume    : Fiu
 Genul   : M
 Parinte1: Eu
 Parinte2: Sotie
+Partener: Nora
+Nr. Copii : 1
+Copil 1 : Nepot2
 
 Persoana  25 : 
 Nume    : Sotie
@@ -187,8 +191,9 @@ Genul   : F
 Parinte1: MamaSotie
 Parinte2: TataSotie
 Partener: Eu
-Nr. Copii : 1
+Nr. Copii : 2
 Copil 1 : Fiu
+Copil 2 : Fiica
 
 Persoana  26 : 
 Nume    : MamaSotie
@@ -211,4 +216,55 @@ Partener: MamaSotie
 Nr. Copii : 2
 Copil 1 : Sotie
 Copil 2 : Cumnat
+
+Persoana  29 : 
+Nume    : Nepot2
+Genul   : M
+Parinte1: Fiu
+Parinte2: Nora
+
+Persoana  30 : 
+Nume    : Nora
+Genul   : F
+Parinte1: Cuscru1
+Parinte2: Cuscra1
+Partener: Fiu
+Nr. Copii : 1
+Copil 1 : Nepot2
+
+Persoana  31 : 
+Nume    : Cuscru1
+Genul   : M
+Partener: Cuscra1
+Nr. Copii : 1
+Copil 1 : Nora
+
+Persoana  32 : 
+Nume    : Cuscra1
+Genul   : F
+Partener: Cuscru1
+Nr. Copii : 1
+Copil 1 : Nora
+
+Persoana  33 : 
+Nume    : Fiica
+Genul   : F
+Parinte1: Eu
+Parinte2: Sotie
+Partener: Ginere
+Nr. Copii : 1
+Copil 1 : Nepoata2
+
+Persoana  34 : 
+Nume    : Nepoata2
+Genul   : F
+Parinte1: Fiica
+Parinte2: Ginere
+
+Persoana  35 : 
+Nume    : Ginere
+Genul   : M
+Partener: Fiica
+Nr. Copii : 1
+Copil 1 : Nepoata2
 

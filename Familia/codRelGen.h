@@ -14,146 +14,206 @@ struct persoanaStruct {
     vector<persoanaStruct*> copii;
 };
 
+struct relatiaSiGradul{
+    string relatiaGenealogica;
+    string gradDeRudenie;
+};
 
-string relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct* aDouaPersoana){
-    string relatiaGenealogica = "Neidentificata" ;
+string toString(int a) {
+    string res = "";
+    if (a == 0) res = "0";
+    while (a>0) {
+        res = (char)(a % 10 + '0') + res;
+        a/=10;
+    }
+    return res;
+}
+
+relatiaSiGradul relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct* aDouaPersoana){
+    relatiaSiGradul relatiaSiGradul;
+    relatiaSiGradul.relatiaGenealogica = "Neidentificat";
+    relatiaSiGradul.gradDeRudenie = "Neidentificat";
     if( codRelatiaGenealogica.size() == 1){
         if ( codRelatiaGenealogica == "A" ){
             if( aDouaPersoana->genul == 'M') {
-                relatiaGenealogica = "Tata";
+                relatiaSiGradul.relatiaGenealogica = "Tata";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }else{
-                relatiaGenealogica = "Mama";
+                relatiaSiGradul.relatiaGenealogica = "Mama";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             };
         }else
         if ( codRelatiaGenealogica == "B" ){
             if ( aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Fiu";
+                relatiaSiGradul.relatiaGenealogica = "Fiu";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }else{
-                relatiaGenealogica = "Fiica";
+                relatiaSiGradul.relatiaGenealogica = "Fiica";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }
         }else
         if ( codRelatiaGenealogica == "C" ){
             if ( aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Sot";
+                relatiaSiGradul.relatiaGenealogica = "Sot";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }else{
-                relatiaGenealogica = "Sotie";
+                relatiaSiGradul.relatiaGenealogica = "Sotie";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }
-        }else relatiaGenealogica = "Neidentificata";
+        }
     }
 
     if( codRelatiaGenealogica.size() == 2){
         if ( codRelatiaGenealogica == "AA" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Bunic";
+                relatiaSiGradul.relatiaGenealogica = "Bunic";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
             }else{
-                relatiaGenealogica = "Bunica";
+                relatiaSiGradul.relatiaGenealogica = "Bunica";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
             }
         }else
         if ( codRelatiaGenealogica == "AB" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Frate";
+                relatiaSiGradul.relatiaGenealogica = "Frate";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
             }else{
-                relatiaGenealogica = "Sora";
+                relatiaSiGradul.relatiaGenealogica = "Sora";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
             }
         }else
         if ( codRelatiaGenealogica == "BB" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Nepot";
+                relatiaSiGradul.relatiaGenealogica = "Nepot";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
             }else{
-                relatiaGenealogica = "Nepoata";
+                relatiaSiGradul.relatiaGenealogica = "Nepoata";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
             }
         }else
         if ( codRelatiaGenealogica == "BC" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Ginere";
+                relatiaSiGradul.relatiaGenealogica = "Ginere";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }else{
-                relatiaGenealogica = "Nora";
+                relatiaSiGradul.relatiaGenealogica = "Nora";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }
         }else
         if ( codRelatiaGenealogica == "CA" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Socru";
+                relatiaSiGradul.relatiaGenealogica = "Socru";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }else{
-                relatiaGenealogica = "Soacra";
+                relatiaSiGradul.relatiaGenealogica = "Soacra";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }
-        }else relatiaGenealogica = "Neidentificata";
+        }
     }
 
     if( codRelatiaGenealogica.size() == 3){
         if ( codRelatiaGenealogica == "AAA" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Strabunic";
+                relatiaSiGradul.relatiaGenealogica = "Strabunic";
+                relatiaSiGradul.gradDeRudenie = "Gr.III";
             }else{
-                relatiaGenealogica = "Strabunica";
+                relatiaSiGradul.relatiaGenealogica = "Strabunica";
+                relatiaSiGradul.gradDeRudenie = "Gr.III";
             }
         }else
         if ( codRelatiaGenealogica == "AAB" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Unchi";
+                relatiaSiGradul.relatiaGenealogica = "Unchi";
+                relatiaSiGradul.gradDeRudenie = "Gr.III";
             }else{
-                relatiaGenealogica = "Matusa";
+                relatiaSiGradul.relatiaGenealogica = "Matusa";
+                relatiaSiGradul.gradDeRudenie = "Gr.III";
             }
         }else
         if ( codRelatiaGenealogica == "ABB" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Nepot (de pe frati)";
+                relatiaSiGradul.relatiaGenealogica = "Nepot (de pe frati)";
+                relatiaSiGradul.gradDeRudenie = "Gr.III";
             }else{
-                relatiaGenealogica = "Nepoata (de pe frati)";
+                relatiaSiGradul.relatiaGenealogica = "Nepoata (de pe frati)";
+                relatiaSiGradul.gradDeRudenie = "Gr.III";
             }
         }else
         if ( codRelatiaGenealogica == "CAB" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Cumnat (de la partener)";
+                relatiaSiGradul.relatiaGenealogica = "Cumnat (de la partener)";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
             }else{
-                relatiaGenealogica = "Cumnata (de la partener)";
+                relatiaSiGradul.relatiaGenealogica = "Cumnata (de la partener)";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
             }
         }else
         if ( codRelatiaGenealogica == "ABC" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Cumnat (de la frati/surori)";
+                relatiaSiGradul.relatiaGenealogica = "Cumnat (de la frati/surori)";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
             }else{
-                relatiaGenealogica = "Cumnata (de la frati/surori)";
+                relatiaSiGradul.relatiaGenealogica = "Cumnata (de la frati/surori)";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
             }
         }else
         if ( codRelatiaGenealogica == "BBB" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Stranepot";
+                relatiaSiGradul.relatiaGenealogica = "Stranepot";
+                relatiaSiGradul.gradDeRudenie = "Gr.III";
             }else{
-                relatiaGenealogica = "Stranepoata";
+                relatiaSiGradul.relatiaGenealogica = "Stranepoata";
+                relatiaSiGradul.gradDeRudenie = "Gr.III";
             }
         }else
         if ( codRelatiaGenealogica == "CBC" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Ginere";
+                relatiaSiGradul.relatiaGenealogica = "Ginere";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }else{
-                relatiaGenealogica = "Nora";
+                relatiaSiGradul.relatiaGenealogica = "Nora";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }
         }else
-        relatiaGenealogica = "Neidentificata";
+        if ( codRelatiaGenealogica == "CAC" ){
+            if (aDouaPersoana->genul == 'M'){
+                relatiaSiGradul.relatiaGenealogica = "Socru";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
+            }else{
+                relatiaSiGradul.relatiaGenealogica = "Soacra";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
+            }
+        }
     };
 
     if( codRelatiaGenealogica.size() == 4){
         if ( codRelatiaGenealogica == "AAAA" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Stra-strabunic";
+                relatiaSiGradul.relatiaGenealogica = "Stra-strabunic";
+                relatiaSiGradul.gradDeRudenie = "Gr.IV";
             }else{
-                relatiaGenealogica = "Stra-strabunica";
+                relatiaSiGradul.relatiaGenealogica = "Stra-strabunica";
+                relatiaSiGradul.gradDeRudenie = "Gr.IV";
             }
         }else
         if ( codRelatiaGenealogica == "AABB" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Var";
+                relatiaSiGradul.relatiaGenealogica = "Verisor";
+                relatiaSiGradul.gradDeRudenie = "Gr.IV";
             }else{
-                relatiaGenealogica = "Verisoara";
+                relatiaSiGradul.relatiaGenealogica = "Verisoara";
+                relatiaSiGradul.gradDeRudenie = "Gr.IV";
             }
         }else
         if ( codRelatiaGenealogica == "BBBB" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Stra-stranepot";
+                relatiaSiGradul.relatiaGenealogica = "Stra-stranepot";
+                relatiaSiGradul.gradDeRudenie = "Gr.IV";
             }else{
-                relatiaGenealogica = "Stra-stranepot";
+                relatiaSiGradul.relatiaGenealogica = "Stra-stranepot";
+                relatiaSiGradul.gradDeRudenie = "Gr.IV";
             }
-        }else relatiaGenealogica = "Neidentificata";
+        }
     }
     //  Stra -stra -stra -stra bunic AA AA AA
     if( codRelatiaGenealogica.size() > 4){
@@ -174,7 +234,8 @@ string relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct* aDouaPer
                 relatiaGenealogicaTemp+="bunica";
             }
             if( countLitera == codRelatiaGenealogica.size() ){
-                relatiaGenealogica = relatiaGenealogicaTemp;
+                relatiaSiGradul.relatiaGenealogica = relatiaGenealogicaTemp;
+                relatiaSiGradul.gradDeRudenie = "Gr." + toString(countLitera);
             }
         }else
         if( codRelatiaGenealogica.find("BBBB") == 0 ){
@@ -194,12 +255,13 @@ string relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct* aDouaPer
                 relatiaGenealogicaTemp+="nepoata";
             }
             if( countLitera == codRelatiaGenealogica.size() ){
-                relatiaGenealogica = relatiaGenealogicaTemp;
+                relatiaSiGradul.relatiaGenealogica = relatiaGenealogicaTemp;
+                relatiaSiGradul.gradDeRudenie = "Gr." + toString(countLitera);
             }
-        }else relatiaGenealogica = "Neidentificata";
+        }
     }
 
-    return relatiaGenealogica;
+    return relatiaSiGradul;
 }
 
 
