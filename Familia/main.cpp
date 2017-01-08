@@ -4,21 +4,13 @@
 #include <string.h>
 #include <fstream>
 #include <vector>
+#include "codRelGen.h"
 using namespace std;
-
-struct persoanaStruct {
-    string nume;
-    char genul;
-    persoanaStruct *parinte1 = 0;
-    persoanaStruct *parinte2 = 0;
-    persoanaStruct *partener = 0;
-    unsigned int nrCopii;
-    persoanaStruct *copii[];
-};
 
 vector<persoanaStruct*> listaPersoane;
 
-string relatiaGenealogica(vector<persoanaStruct*> ramuraCompleta);
+string codRelatiaGenealogica(vector<persoanaStruct*> ramuraCompleta);
+string relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct* aDouaPersoana);
 
 void adaugarePersoanaInVector(string nume){
     bool esteInVector = false;
@@ -32,7 +24,6 @@ void adaugarePersoanaInVector(string nume){
     if(esteInVector == false){
         persoana = new persoanaStruct;
         persoana->nume = nume;
-        persoana->nrCopii = 0;
         listaPersoane.push_back(persoana);
     }
 };
@@ -214,7 +205,19 @@ string gasireaAncestruluiComunRude(string primaPersoana, string aDouaPersoana){
                 cout << ramuriConcatinate[i]->nume << ' ';
             }
             cout << endl;
-            cout << "THE CODE : " << relatiaGenealogica(ramuriConcatinate) << endl;
+            string codulRelatieiGenealogice = codRelatiaGenealogica(ramuriConcatinate);
+            cout << "THE CODE : " << codulRelatieiGenealogice << endl;
+
+            persoanaStruct* aDouaPersoanaPointer;
+            for(int i=0; i < listaPersoane.size(); i++){
+                if(listaPersoane[i]->nume == aDouaPersoana){
+                    aDouaPersoanaPointer = listaPersoane[i];
+                }
+            };
+
+            string relatiaGen = relatiaGenealogica(codulRelatieiGenealogice, aDouaPersoanaPointer);
+            cout << "!Relatia : " << relatiaGen << endl;
+
             return ancestorComun;
         }
     }
@@ -311,12 +314,24 @@ string gasireaAncestruluiComunRudeAfine(string primaPersoana, string aDouaPersoa
         }
         cout << endl;
 
-        cout << "THE CODE : " << relatiaGenealogica(ramuriConcatinate) << endl;
+        string codulRelatieiGenealogice = codRelatiaGenealogica(ramuriConcatinate);
+        cout << "THE CODE : " << codulRelatieiGenealogice << endl;
+
+        persoanaStruct* aDouaPersoanaPointer;
+        for(int i=0; i < listaPersoane.size(); i++){
+            if(listaPersoane[i]->nume == aDouaPersoana){
+                aDouaPersoanaPointer = listaPersoane[i];
+            }
+        }
+
+        string relatiaGen = relatiaGenealogica(codulRelatieiGenealogice, aDouaPersoanaPointer);
+        cout << "!Relatia : " << relatiaGen << endl;
+
         return ancestorComun;
     }
 }
 
-string relatiaGenealogica(vector<persoanaStruct*> ramuraCompleta){
+string codRelatiaGenealogica(vector<persoanaStruct*> ramuraCompleta){
     string relatiaGenealogica;
     for(int i=0; i < ramuraCompleta.size()-1 ; i++){
         if (ramuraCompleta[i]->parinte1 == ramuraCompleta[i+1] ){
@@ -339,6 +354,7 @@ string relatiaGenealogica(vector<persoanaStruct*> ramuraCompleta){
     };
     return relatiaGenealogica;
 }
+
 
 int main()
 {
@@ -372,5 +388,6 @@ int main()
             cout << aDouaPersoana << " nu este in arborele genealogic introdus." << endl;
         }
     }
-
+    listaPersoane.clear();
+    listaPersoane.shrink_to_fit();
 }

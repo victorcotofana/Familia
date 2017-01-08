@@ -1,9 +1,15 @@
 # depslib dependency file v1.0
-1483819867 source:c:\users\user\dropbox\faculta\c++\repositories\familia\familia\main.cpp
+1483880674 source:c:\users\user\dropbox\faculta\c++\repositories\familia\familia\main.cpp
 	<iostream>
 	<stdio.h>
 	<string>
 	<string.h>
 	<fstream>
 	<vector>
+	"codRelGen.h"
+
+1483881660 c:\users\user\dropbox\faculta\c++\repositories\familia\familia\codrelgen.h
+	<string.h>
+	<string>
+	<iostream>
 

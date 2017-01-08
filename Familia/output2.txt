@@ -1,12 +1,26 @@
 Lista persoane:
 Persoana  1 : 
+Nume    : Strastrastrabunic1
+Genul   : M
+Nr. Copii : 1
+Copil 1 : Strastrabunic1
+
+Persoana  2 : 
+Nume    : Strastrabunic1
+Genul   : M
+Parinte1: Strastrastrabunic1
+Nr. Copii : 1
+Copil 1 : Strabunic1
+
+Persoana  3 : 
 Nume    : Strabunic1
 Genul   : M
+Parinte1: Strastrabunic1
 Partener: Strabunica1
 Nr. Copii : 1
 Copil 1 : Bunica1
 
-Persoana  2 : 
+Persoana  4 : 
 Nume    : Bunica1
 Genul   : F
 Parinte1: Strabunic1
@@ -17,14 +31,14 @@ Copil 1 : Unchi1
 Copil 2 : Matusa1
 Copil 3 : Tata
 
-Persoana  3 : 
+Persoana  5 : 
 Nume    : Strabunica1
 Genul   : F
 Partener: Strabunic1
 Nr. Copii : 1
 Copil 1 : Bunica1
 
-Persoana  4 : 
+Persoana  6 : 
 Nume    : Unchi1
 Genul   : M
 Parinte1: Bunica1
@@ -32,7 +46,7 @@ Parinte2: Bunic1
 Nr. Copii : 1
 Copil 1 : Verisoara1
 
-Persoana  5 : 
+Persoana  7 : 
 Nume    : Bunic1
 Genul   : M
 Partener: Bunica1
@@ -41,7 +55,7 @@ Copil 1 : Unchi1
 Copil 2 : Matusa1
 Copil 3 : Tata
 
-Persoana  6 : 
+Persoana  8 : 
 Nume    : Matusa1
 Genul   : F
 Parinte1: Bunica1
@@ -49,7 +63,7 @@ Parinte2: Bunic1
 Nr. Copii : 1
 Copil 1 : Verisor1
 
-Persoana  7 : 
+Persoana  9 : 
 Nume    : Tata
 Genul   : M
 Parinte1: Bunica1
@@ -60,23 +74,23 @@ Copil 1 : Eu
 Copil 2 : Sora
 Copil 3 : Frate
 
-Persoana  8 : 
+Persoana  10 : 
 Nume    : Verisor1
 Genul   : M
 Parinte1: Matusa1
 
-Persoana  9 : 
+Persoana  11 : 
 Nume    : Verisoara1
 Genul   : F
 Parinte1: Unchi1
 
-Persoana  10 : 
+Persoana  12 : 
 Nume    : Strabunica2
 Genul   : F
 Nr. Copii : 1
 Copil 1 : Bunic2
 
-Persoana  11 : 
+Persoana  13 : 
 Nume    : Bunic2
 Genul   : M
 Parinte1: Strabunica2
@@ -85,7 +99,7 @@ Nr. Copii : 2
 Copil 1 : Mama
 Copil 2 : Matusa2
 
-Persoana  12 : 
+Persoana  14 : 
 Nume    : Mama
 Genul   : F
 Parinte1: Bunic2
@@ -96,7 +110,7 @@ Copil 1 : Eu
 Copil 2 : Sora
 Copil 3 : Frate
 
-Persoana  13 : 
+Persoana  15 : 
 Nume    : Bunica2
 Genul   : F
 Partener: Bunic2
@@ -104,7 +118,7 @@ Nr. Copii : 2
 Copil 1 : Mama
 Copil 2 : Matusa2
 
-Persoana  14 : 
+Persoana  16 : 
 Nume    : Matusa2
 Genul   : F
 Parinte1: Bunic2
@@ -112,12 +126,12 @@ Parinte2: Bunica2
 Nr. Copii : 1
 Copil 1 : Verisor2
 
-Persoana  15 : 
+Persoana  17 : 
 Nume    : Verisor2
 Genul   : M
 Parinte1: Matusa2
 
-Persoana  16 : 
+Persoana  18 : 
 Nume    : Eu
 Genul   : M
 Parinte1: Tata
@@ -126,7 +140,7 @@ Partener: Sotie
 Nr. Copii : 1
 Copil 1 : Fiu
 
-Persoana  17 : 
+Persoana  19 : 
 Nume    : Sora
 Genul   : F
 Parinte1: Tata
@@ -134,7 +148,7 @@ Parinte2: Mama
 Nr. Copii : 1
 Copil 1 : Nepot
 
-Persoana  18 : 
+Persoana  20 : 
 Nume    : Frate
 Genul   : M
 Parinte1: Tata
@@ -143,25 +157,25 @@ Partener: Cumnata
 Nr. Copii : 1
 Copil 1 : Nepoata
 
-Persoana  19 : 
+Persoana  21 : 
 Nume    : Nepot
 Genul   : M
 Parinte1: Sora
 
-Persoana  20 : 
+Persoana  22 : 
 Nume    : Nepoata
 Genul   : F
 Parinte1: Frate
 Parinte2: Cumnata
 
-Persoana  21 : 
+Persoana  23 : 
 Nume    : Cumnata
 Genul   : F
 Partener: Frate
 Nr. Copii : 1
 Copil 1 : Nepoata
 
-Persoana  22 : 
+Persoana  24 : 
 Nume    : Fiu
 Genul   : M
 Parinte1: Eu
@@ -169,7 +183,7 @@ Parinte2: Sotie
 Nr. Copii : 1
 Copil 1 : Nepot1
 
-Persoana  23 : 
+Persoana  25 : 
 Nume    : Sotie
 Genul   : F
 Parinte1: MamaSotie
@@ -178,7 +192,7 @@ Partener: Eu
 Nr. Copii : 1
 Copil 1 : Fiu
 
-Persoana  24 : 
+Persoana  26 : 
 Nume    : MamaSotie
 Genul   : F
 Partener: TataSotie
@@ -186,13 +200,13 @@ Nr. Copii : 2
 Copil 1 : Sotie
 Copil 2 : Cumnat
 
-Persoana  25 : 
+Persoana  27 : 
 Nume    : Cumnat
 Genul   : M
 Parinte1: MamaSotie
 Parinte2: TataSotie
 
-Persoana  26 : 
+Persoana  28 : 
 Nume    : TataSotie
 Genul   : M
 Partener: MamaSotie
@@ -200,7 +214,7 @@ Nr. Copii : 2
 Copil 1 : Sotie
 Copil 2 : Cumnat
 
-Persoana  27 : 
+Persoana  29 : 
 Nume    : Nepot1
 Genul   : M
 Parinte1: Fiu
