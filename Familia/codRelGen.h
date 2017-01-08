@@ -11,8 +11,7 @@ struct persoanaStruct {
     persoanaStruct *parinte1 = 0;
     persoanaStruct *parinte2 = 0;
     persoanaStruct *partener = 0;
-    unsigned int nrCopii = 0;
-    persoanaStruct *copii[];
+    vector<persoanaStruct*> copii;
 };
 
 
@@ -97,23 +96,23 @@ string relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct* aDouaPer
         }else
         if ( codRelatiaGenealogica == "ABB" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Nepot(de pe frati)";
+                relatiaGenealogica = "Nepot (de pe frati)";
             }else{
-                relatiaGenealogica = "Nepoata(de pe frati)";
+                relatiaGenealogica = "Nepoata (de pe frati)";
             }
         }else
         if ( codRelatiaGenealogica == "CAB" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Cumnat(de la partener)";
+                relatiaGenealogica = "Cumnat (de la partener)";
             }else{
-                relatiaGenealogica = "Cumnata(de la partener)";
+                relatiaGenealogica = "Cumnata (de la partener)";
             }
         }else
         if ( codRelatiaGenealogica == "ABC" ){
             if (aDouaPersoana->genul == 'M'){
-                relatiaGenealogica = "Cumnat(de la frati/surori)";
+                relatiaGenealogica = "Cumnat (de la frati/surori)";
             }else{
-                relatiaGenealogica = "Cumnata(de la frati/surori)";
+                relatiaGenealogica = "Cumnata (de la frati/surori)";
             }
         }else
         if ( codRelatiaGenealogica == "BBB" ){
@@ -121,6 +120,13 @@ string relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct* aDouaPer
                 relatiaGenealogica = "Stranepot";
             }else{
                 relatiaGenealogica = "Stranepoata";
+            }
+        }else
+        if ( codRelatiaGenealogica == "CBC" ){
+            if (aDouaPersoana->genul == 'M'){
+                relatiaGenealogica = "Ginere";
+            }else{
+                relatiaGenealogica = "Nora";
             }
         }else
         relatiaGenealogica = "Neidentificata";

@@ -1,6 +1,6 @@
 Lista persoane:
 Persoana  1 : 
-Nume    : Strastrastrabunic1
+Nume    : Strassbunic1
 Genul   : M
 Nr. Copii : 1
 Copil 1 : Strastrabunic1
@@ -8,7 +8,7 @@ Copil 1 : Strastrabunic1
 Persoana  2 : 
 Nume    : Strastrabunic1
 Genul   : M
-Parinte1: Strastrastrabunic1
+Parinte1: Strassbunic1
 Nr. Copii : 1
 Copil 1 : Strabunic1
 
@@ -180,8 +180,6 @@ Nume    : Fiu
 Genul   : M
 Parinte1: Eu
 Parinte2: Sotie
-Nr. Copii : 1
-Copil 1 : Nepot1
 
 Persoana  25 : 
 Nume    : Sotie
@@ -213,9 +211,4 @@ Partener: MamaSotie
 Nr. Copii : 2
 Copil 1 : Sotie
 Copil 2 : Cumnat
-
-Persoana  29 : 
-Nume    : Nepot1
-Genul   : M
-Parinte1: Fiu
 

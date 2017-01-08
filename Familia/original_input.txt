@@ -1,5 +1,3 @@
-parent(Strassbunic1,Strastrabunic1)
-parent(Strastrabunic1,Strabunic1)
 parent(Strabunic1,Bunica1)
 parent(Strabunica1,Bunica1)
 parent(Bunica1,Unchi1)
@@ -31,8 +29,8 @@ parent(MamaSotie,Sotie)
 parent(MamaSotie,Cumnat)
 parent(TataSotie,Sotie)
 parent(TataSotie,Cumnat)
-Strastrabunic1 M
-Strassbunic1 M
+parent(Fiu,Nepot1)
+parent(Nora,Nepot1)
 Strabunic1 M
 Bunica1 F
 Strabunica1 F
