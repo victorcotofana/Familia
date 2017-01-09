@@ -319,8 +319,11 @@ relatieDouaPers gasireaAncestruluiComunRudeAfine(string primaPersoana, string aD
         for(int i=1; i < ramura2.size(); i++){
             ramuriConcatinate.push_back(ramura2[i]);
         }
-        //&&( ramuriConcatinate[i-1]->partener == ramuriConcatinate[i])
+
         for(int i=1; i < ramuriConcatinate.size()-1; i++){
+            bool primaConditie = (( ramuriConcatinate[i]->partener == ramuriConcatinate[i+1] )&&(( ramuriConcatinate[i]->parinte1 != ramuriConcatinate[i-1] )&&( ramuriConcatinate[i]->parinte2 != ramuriConcatinate[i-1] )));
+            bool aDouaConditie = (( ramuriConcatinate[i]->partener == ramuriConcatinate[i-1] )&&(( ramuriConcatinate[i+1]->parinte1 == ramuriConcatinate[i] )||( ramuriConcatinate[i+1]->parinte2 == ramuriConcatinate[i] )));
+            if(primaConditie || aDouaConditie){
                 ramuriConcatinate.erase(ramuriConcatinate.begin()+i);
             }
         }
@@ -378,16 +381,15 @@ int main()
 
     bool estePrimaPersoana = false , esteADouaPersoana = false;
     string primaPersoana, aDouaPersoana;
-    cout << "Prima persoana : " ;
+    cout << "Prima persoana   : " ;
     cin >> primaPersoana;
-    cout << "A doua persoana: " ;
+    cout << "A doua persoana  : " ;
     cin >> aDouaPersoana;
     estePrimaPersoana = gasireaUneiPersoane(primaPersoana);
     esteADouaPersoana = gasireaUneiPersoane(aDouaPersoana);
     if(estePrimaPersoana && esteADouaPersoana){
         relatieDouaPers relatiaDintrePersoane = gasireaAncestruluiComunRude(primaPersoana,aDouaPersoana);
         if( relatiaDintrePersoane.ancestorComun!= "\0"){
-            cout << "Forma de Rudenie : " << relatiaDintrePersoane.tipLegatura << endl;
             cout << "Stramosul Comun  : " << relatiaDintrePersoane.ancestorComun << endl;
             cout << "Ramura Completa  : ";
             for(int i=0; i < relatiaDintrePersoane.ramuraCompleta.size(); i++){
@@ -395,11 +397,11 @@ int main()
             }
             cout << endl;
             cout << "Codul Relatiei   : " << relatiaDintrePersoane.codRelatie << endl;
+            cout << "Forma de Rudenie : " << relatiaDintrePersoane.tipLegatura << endl;
             cout << "Gradul de rudenie: " << relatiaDintrePersoane.gradulDeRudenie << endl;
             cout << "Relatie          : " << relatiaDintrePersoane.relatia << endl;
         }else{
             relatieDouaPers relatieAfina = gasireaAncestruluiComunRudeAfine(primaPersoana,aDouaPersoana);
-            cout << "Forma de Rudenie : " << relatieAfina.tipLegatura << endl;
             cout << "Ruda Comuna      : " << relatieAfina.ancestorComun << endl;
             cout << "Ramura Completa  : ";
             for(int i=0; i < relatieAfina.ramuraCompleta.size(); i++){
@@ -407,6 +409,7 @@ int main()
             }
             cout << endl;
             cout << "Codul Relatiei   : " << relatieAfina.codRelatie << endl;
+            cout << "Forma de Rudenie : " << relatieAfina.tipLegatura << endl;
             cout << "Gradul de rudenie: " << relatieAfina.gradulDeRudenie << endl;
             cout << "Relatie          : " << relatieAfina.relatia << endl;
         }
