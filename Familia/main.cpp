@@ -321,8 +321,6 @@ relatieDouaPers gasireaAncestruluiComunRudeAfine(string primaPersoana, string aD
         }
         //&&( ramuriConcatinate[i-1]->partener == ramuriConcatinate[i])
         for(int i=1; i < ramuriConcatinate.size()-1; i++){
-            if((( ramuriConcatinate[i]->partener == ramuriConcatinate[i+1] )&&(( ramuriConcatinate[i]->parinte1 != ramuriConcatinate[i-1] )&&( ramuriConcatinate[i]->parinte2 != ramuriConcatinate[i-1] ))) )
-                {
                 ramuriConcatinate.erase(ramuriConcatinate.begin()+i);
             }
         }

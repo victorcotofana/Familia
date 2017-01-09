@@ -183,6 +183,15 @@ relatiaSiGradul relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct*
                 relatiaSiGradul.relatiaGenealogica = "Soacra";
                 relatiaSiGradul.gradDeRudenie = "Gr.I";
             }
+        }else
+        if ( codRelatiaGenealogica == "BCA" ){
+            if (aDouaPersoana->genul == 'M'){
+                relatiaSiGradul.relatiaGenealogica = "Cuscru";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
+            }else{
+                relatiaSiGradul.relatiaGenealogica = "Cuscra";
+                relatiaSiGradul.gradDeRudenie = "Gr.II";
+            }
         }
     };
 
