@@ -18,6 +18,7 @@ struct relatieDouaPers{
     string gradulDeRudenie;
 } ;
 
+// Utilizarea vectorilor : http://www.cplusplus.com/reference/vector/vector/
 vector<persoanaStruct*> listaPersoane;
 
 string codRelatiaGenealogica(vector<persoanaStruct*> ramuraCompleta);
@@ -31,6 +32,7 @@ void adaugarePersoanaInVector(string nume){
             break;
         }
     }
+    // Introducerea unei structuri in vector : http://stackoverflow.com/questions/8067338/vector-of-structs-initialization
     if(esteInVector == false){
         persoana = new persoanaStruct;
         persoana->nume = nume;
@@ -77,10 +79,11 @@ void adaugareRelatiePartener(){
 void citireCreareArboreGenealogic(){
     string opIntrare,numeParinte,numeCopil,numePersoana,numeGenPersoana;
     char genPersoana;
+    // Input / Output cu fisiere : http://www.cplusplus.com/doc/tutorial/files/
     ifstream inputFile;
     inputFile.open("input2.txt",ifstream::in);
     while((getline(inputFile,opIntrare,'('))&&((opIntrare=="parent")||(opIntrare=="\nparent"))){
-        getline(inputFile, numeParinte, ',');
+        getline(inputFile, numeParinte, ',');   //http://www.cplusplus.com/reference/string/string/getline/
         adaugarePersoanaInVector(numeParinte);
         getline(inputFile, numeCopil, ')');
         adaugarePersoanaInVector(numeCopil);
@@ -104,22 +107,23 @@ void citireCreareArboreGenealogic(){
 }
 
 void afisareListaPersoane(){
+    // Input / Output cu fisiere : http://www.cplusplus.com/doc/tutorial/files/
     ofstream outputFile;
     outputFile.open("output2.txt",ifstream::out);
 
     outputFile << "Lista persoane:" << endl;
     for(int i=0;i<listaPersoane.size();i++){
-        outputFile << "Persoana  " << i+1 << " : " << endl;
-        outputFile << "Nume    : " << listaPersoane[i]->nume <<endl;
-        outputFile << "Genul   : " << listaPersoane[i]->genul << endl;
+        outputFile << "Persoana " << i+1 << endl;
+        outputFile << "Nume      : " << listaPersoane[i]->nume <<endl;
+        outputFile << "Genul     : " << listaPersoane[i]->genul << endl;
         if(listaPersoane[i]->parinte1 != 0){
-            outputFile << "Parinte1: " << listaPersoane[i]->parinte1->nume <<endl;
+            outputFile << "Parinte1  : " << listaPersoane[i]->parinte1->nume <<endl;
         };
         if(listaPersoane[i]->parinte2 != 0){
-            outputFile << "Parinte2: " << listaPersoane[i]->parinte2->nume <<endl;
+            outputFile << "Parinte2  : " << listaPersoane[i]->parinte2->nume <<endl;
         };
         if(listaPersoane[i]->partener != 0){
-            outputFile << "Partener: " << listaPersoane[i]->partener->nume << endl;
+            outputFile << "Partener  : " << listaPersoane[i]->partener->nume << endl;
         }
 
         if(listaPersoane[i]->copii.size() != 0){
@@ -127,7 +131,7 @@ void afisareListaPersoane(){
 
             for(int j=0;j<listaPersoane[i]->copii.size(); j++){
                 if(listaPersoane[i]->copii[j]!=0){
-                    outputFile << "Copil " << j+1 << " : " << listaPersoane[i]->copii[j]->nume << endl;
+                    outputFile << "Copil  " << j+1 << "  : " << listaPersoane[i]->copii[j]->nume << endl;
                 }
             }
 
@@ -147,8 +151,13 @@ bool gasireaUneiPersoane(string numePersoana){
     return gasit;
 }
 
+/* Algoritmul LCA adaptat pentru gasirea Rudei de singe comune*/
+// Cum l-am gasit : https://www.quora.com/How-do-I-calculate-the-path-between-two-nodes-in-a-general-tree-Is-there-a-way-other-than-backtracking-as-it-has-high-complexity
+// Algoritmul LCA : http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
+// Aici modificat si adaptat la problema
 bool gasireaRamureiAnComun(persoanaStruct *ancestor, vector<persoanaStruct*> &ramura, string numePersoana){
     if (ancestor == 0) return false;
+    // Adaugarea unui element nou la sfirsitul vectorului : http://www.cplusplus.com/reference/vector/vector/push_back/
     ramura.push_back(ancestor);
     if (ancestor->nume == numePersoana) return true;
     if (ancestor->copii.size() != 0){
@@ -159,6 +168,7 @@ bool gasireaRamureiAnComun(persoanaStruct *ancestor, vector<persoanaStruct*> &ra
             }
         };
     }
+    // Eliminarea ultimul element din vector : http://www.cplusplus.com/reference/vector/vector/pop_back/
     ramura.pop_back();
     return false;
 }
@@ -226,7 +236,12 @@ relatieDouaPers gasireaAncestruluiComunRude(string primaPersoana, string aDouaPe
         }
     }
 }
+/* Sfirsitul Primului Algorit LCA */
 
+
+/* Algoritmul LCA adaptat pentru gasirea Rudei afine comue */
+// Algoritmul LCA : http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
+// Aici modificat si adaptat la problema
 bool gasireaRamureiAnComunAfini(persoanaStruct *rudaAfinaComuna,bool vineAfin, string numeExclusPartener , string numeExclusCopil, vector<persoanaStruct*> &ramura, string numePersoana){
     if (rudaAfinaComuna == 0) return false;
     ramura.push_back(rudaAfinaComuna);
@@ -348,16 +363,20 @@ relatieDouaPers gasireaAncestruluiComunRudeAfine(string primaPersoana, string aD
         return relatieDouaAfine;
     }
 }
+/* Sfirsitul celui de-al doilea algoritm LCA*/
 
 string codRelatiaGenealogica(vector<persoanaStruct*> ramuraCompleta){
     string relatiaGenealogica;
     for(int i=0; i < ramuraCompleta.size()-1 ; i++){
+        // Daca se duce in sus pe arbore, in cod apare A
         if (ramuraCompleta[i]->parinte1 == ramuraCompleta[i+1] ){
             relatiaGenealogica += 'A';
         }
         if (ramuraCompleta[i]->parinte2 == ramuraCompleta[i+1]){
             relatiaGenealogica += 'A';
         }
+
+        // Daca se duce in jos pe arbore, in cod se pune B
         if (ramuraCompleta[i]->copii.size() != 0){
             for(int j=0; j < ramuraCompleta[i]->copii.size(); j++ ){
                 if(ramuraCompleta[i]->copii[j]->nume == ramuraCompleta[i+1]->nume){
@@ -366,6 +385,8 @@ string codRelatiaGenealogica(vector<persoanaStruct*> ramuraCompleta){
                 }
             }
         }
+
+        // Daca se duce in stinga sau dreapta pe arbore, in cod se pune C
         if (ramuraCompleta[i]->partener == ramuraCompleta[i+1]){
             relatiaGenealogica += 'C';
         }

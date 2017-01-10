@@ -29,6 +29,10 @@ string toString(int a) {
     return res;
 }
 
+//  Resursele folosite:
+//  https://www.uoradea.ro/display2184
+//  https://ro.wikipedia.org/wiki/Grade_de_rudenie
+
 relatiaSiGradul relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct* aDouaPersoana){
     relatiaSiGradul relatiaSiGradul;
     relatiaSiGradul.relatiaGenealogica = "Neidentificat";
@@ -89,6 +93,15 @@ relatiaSiGradul relatiaGenealogica(string codRelatiaGenealogica, persoanaStruct*
             }else{
                 relatiaSiGradul.relatiaGenealogica = "Nepoata";
                 relatiaSiGradul.gradDeRudenie = "Gr.II";
+            }
+        }else
+        if ( codRelatiaGenealogica == "BA" ){
+            if (aDouaPersoana->genul == 'M'){
+                relatiaSiGradul.relatiaGenealogica = "Sot";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
+            }else{
+                relatiaSiGradul.relatiaGenealogica = "Sotie";
+                relatiaSiGradul.gradDeRudenie = "Gr.I";
             }
         }else
         if ( codRelatiaGenealogica == "BC" ){
