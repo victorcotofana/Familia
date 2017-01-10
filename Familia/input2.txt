@@ -8,8 +8,9 @@ parent(Bunica1,Matusa1)
 parent(Bunic1,Matusa1)
 parent(Bunica1,Tata)
 parent(Bunic1,Tata)
-parent(Matusa1,Verisor1)
 parent(Unchi1,Verisoara1)
+parent(Verisor1,Copil)
+parent(Verisoara1,Copil)
 parent(Strabunica2,Bunic2)
 parent(Bunic2,Mama)
 parent(Bunica2,Mama)
@@ -75,3 +76,4 @@ Nepot2 M
 Fiica F
 Nepoata2 F
 Ginere M
+Copil M
