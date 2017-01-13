@@ -81,7 +81,7 @@ void citireCreareArboreGenealogic(){
     char genPersoana;
     // Input / Output cu fisiere : http://www.cplusplus.com/doc/tutorial/files/
     ifstream inputFile;
-    inputFile.open("input2.txt",ifstream::in);
+    inputFile.open("input.txt",ifstream::in);
     while((getline(inputFile,opIntrare,'('))&&((opIntrare=="parent")||(opIntrare=="\nparent"))){
         getline(inputFile, numeParinte, ',');   //http://www.cplusplus.com/reference/string/string/getline/
         adaugarePersoanaInVector(numeParinte);
@@ -109,7 +109,7 @@ void citireCreareArboreGenealogic(){
 void afisareListaPersoane(){
     // Input / Output cu fisiere : http://www.cplusplus.com/doc/tutorial/files/
     ofstream outputFile;
-    outputFile.open("output2.txt",ifstream::out);
+    outputFile.open("output.txt",ifstream::out);
 
     outputFile << "Lista persoane:" << endl;
     for(int i=0;i<listaPersoane.size();i++){

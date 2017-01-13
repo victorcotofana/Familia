@@ -1,0 +1,13 @@
+parent(GrandPa1,Father)
+parent(GrandMa1,Father)
+parent(GrandPa2,Mother)
+parent(GrandMa2,Mother)
+parent(Father,Me)
+parent(Mother,Me)
+GrandPa1 M
+GrandMa1 F
+GrandPa2 M
+GrandMa2 F
+Mother F
+Father M
+Me M

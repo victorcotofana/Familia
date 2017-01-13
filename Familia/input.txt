@@ -1,13 +1,78 @@
-parent(GrandPa1,Father)
-parent(GrandMa1,Father)
-parent(GrandPa2,Mother)
-parent(GrandMa2,Mother)
-parent(Father,Me)
-parent(Mother,Me)
-GrandPa1 M
-GrandMa1 F
-GrandPa2 M
-GrandMa2 F
-Mother F
-Father M
-Me M
+parent(Strastrastrabunic1,Strastrabunic1)
+parent(Strastrabunic1,Strabunica1)
+parent(Strabunic1,Bunica1)
+parent(Strabunica1,Bunica1)
+parent(Bunica1,Unchi1)
+parent(Bunic1,Unchi1)
+parent(Bunica1,Matusa1)
+parent(Bunic1,Matusa1)
+parent(Bunica1,Tata)
+parent(Bunic1,Tata)
+parent(Matusa1,Verisor1)
+parent(Unchi1,Verisoara1)
+parent(Strabunica2,Bunic2)
+parent(Bunic2,Mama)
+parent(Bunica2,Mama)
+parent(Bunic2,Matusa2)
+parent(Bunica2,Matusa2)
+parent(Matusa2,Verisor2)
+parent(Tata,Eu)
+parent(Mama,Eu)
+parent(Tata,Sora1)
+parent(Mama,Sora1)
+parent(Tata,Frate1)
+parent(Mama,Frate1)
+parent(Sora1,Nepot1)
+parent(Frate1,Nepoata1)
+parent(Cumnata1,Nepoata1)
+parent(Eu,Fiu)
+parent(Sotie,Fiu)
+parent(Soacra1,Sotie)
+parent(Soacra1,Cumnat1)
+parent(Socru1,Sotie)
+parent(Socru1,Cumnat1)
+parent(Cumnat1,Nepot2)
+parent(Fiu,Nepot3)
+parent(Nora1,Nepot3)
+parent(Cuscru0,Nora1)
+parent(Cuscra0,Nora1)
+parent(Eu,Fiica)
+parent(Sotie,Fiica)
+parent(Fiica,Nepoata3)
+parent(Ginere2,Nepoata3)
+Strastrabunic1 M
+Strastrastrabunic1 M
+Strabunic1 M
+Bunica1 F
+Strabunica1 F
+Unchi1 M
+Bunic1 M
+Matusa1 F
+Tata M
+Verisor1 M
+Verisoara1 F
+Strabunica2 F
+Bunic2 M
+Bunica2 F
+Mama F
+Matusa2 F
+Verisor2 M
+Eu M
+Sora1 F
+Frate1 M
+Nepot1 M
+Nepoata1 F
+Fiu M
+Soacra1 F
+Socru1 M
+Cumnat1 M
+Cumnata1 F
+Sotie F
+Nora1 F
+Cuscra0 F
+Cuscru0 M
+Nepot2 M
+Nepot3 M
+Fiica F
+Nepoata3 F
+Ginere2 M

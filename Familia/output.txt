@@ -1,88 +1,277 @@
-GrandPa1->Father
- adassa :: 1
-GrandMa1->Father
- adassa :: 1
-GrandPa2->Mother
- adassa :: 1
-GrandMa2->Mother
- adassa :: 1
-Father->Me
- adassa :: 1
-Mother->Me
- adassa :: 1
-
-NG:GrandPa1 M
-GN:M
-NP:GrandPa1
-NG:GrandMa1 F
-GN:F
-NP:GrandMa1
-NG:GrandPa2 M
-GN:M
-NP:GrandPa2
-NG:GrandMa2 F
-GN:F
-NP:GrandMa2
-NG:Mother F
-GN:F
-NP:Mother
-NG:Father M
-GN:M
-NP:Father
-NG:Me M
-GN:M
-NP:Me
-
 Lista persoane:
-Persoana  1 : 
-Nume    : GrandPa1
-Genul   : M
-Partener: GrandMa1
+Persoana 1
+Nume      : Strastrastrabunic1
+Genul     : M
 Nr. Copii : 1
-Copil 1 : Father
+Copil  1  : Strastrabunic1
 
-Persoana  2 : 
-Nume    : Father
-Genul   : M
-Parinte1: GrandPa1
-Parinte2: GrandMa1
-Partener: Mother
+Persoana 2
+Nume      : Strastrabunic1
+Genul     : M
+Parinte1  : Strastrastrabunic1
 Nr. Copii : 1
-Copil 1 : Me
+Copil  1  : Strabunica1
 
-Persoana  3 : 
-Nume    : GrandMa1
-Genul   : F
-Partener: GrandPa1
+Persoana 3
+Nume      : Strabunica2
+Genul     : F
 Nr. Copii : 1
-Copil 1 : Father
+Copil  1  : Bunic2
 
-Persoana  4 : 
-Nume    : GrandPa2
-Genul   : M
-Partener: GrandMa2
+Persoana 4
+Nume      : Bunic2
+Genul     : M
+Parinte1  : Strabunica2
+Partener  : Bunica2
+Nr. Copii : 2
+Copil  1  : Mama
+Copil  2  : Matusa2
+
+Persoana 5
+Nume      : Strabunica1
+Genul     : F
+Parinte1  : Strastrabunic1
+Partener  : Strabunic1
 Nr. Copii : 1
-Copil 1 : Mother
+Copil  1  : Bunica1
 
-Persoana  5 : 
-Nume    : Mother
-Genul   : F
-Parinte1: GrandPa2
-Parinte2: GrandMa2
-Partener: Father
+Persoana 6
+Nume      : Strabunic1
+Genul     : M
+Partener  : Strabunica1
 Nr. Copii : 1
-Copil 1 : Me
+Copil  1  : Bunica1
 
-Persoana  6 : 
-Nume    : GrandMa2
-Genul   : F
-Partener: GrandPa2
+Persoana 7
+Nume      : Bunica1
+Genul     : F
+Parinte1  : Strabunic1
+Parinte2  : Strabunica1
+Partener  : Bunic1
+Nr. Copii : 3
+Copil  1  : Unchi1
+Copil  2  : Matusa1
+Copil  3  : Tata
+
+Persoana 8
+Nume      : Unchi1
+Genul     : M
+Parinte1  : Bunica1
+Parinte2  : Bunic1
 Nr. Copii : 1
-Copil 1 : Mother
+Copil  1  : Verisoara1
 
-Persoana  7 : 
-Nume    : Me
-Genul   : M
-Parinte1: Father
-Parinte2: Mother
+Persoana 9
+Nume      : Bunic1
+Genul     : M
+Partener  : Bunica1
+Nr. Copii : 3
+Copil  1  : Unchi1
+Copil  2  : Matusa1
+Copil  3  : Tata
+
+Persoana 10
+Nume      : Matusa1
+Genul     : F
+Parinte1  : Bunica1
+Parinte2  : Bunic1
+Nr. Copii : 1
+Copil  1  : Verisor1
+
+Persoana 11
+Nume      : Tata
+Genul     : M
+Parinte1  : Bunica1
+Parinte2  : Bunic1
+Partener  : Mama
+Nr. Copii : 3
+Copil  1  : Eu
+Copil  2  : Sora1
+Copil  3  : Frate1
+
+Persoana 12
+Nume      : Verisor1
+Genul     : M
+Parinte1  : Matusa1
+
+Persoana 13
+Nume      : Verisoara1
+Genul     : F
+Parinte1  : Unchi1
+
+Persoana 14
+Nume      : Mama
+Genul     : F
+Parinte1  : Bunic2
+Parinte2  : Bunica2
+Partener  : Tata
+Nr. Copii : 3
+Copil  1  : Eu
+Copil  2  : Sora1
+Copil  3  : Frate1
+
+Persoana 15
+Nume      : Bunica2
+Genul     : F
+Partener  : Bunic2
+Nr. Copii : 2
+Copil  1  : Mama
+Copil  2  : Matusa2
+
+Persoana 16
+Nume      : Matusa2
+Genul     : F
+Parinte1  : Bunic2
+Parinte2  : Bunica2
+Nr. Copii : 1
+Copil  1  : Verisor2
+
+Persoana 17
+Nume      : Verisor2
+Genul     : M
+Parinte1  : Matusa2
+
+Persoana 18
+Nume      : Eu
+Genul     : M
+Parinte1  : Tata
+Parinte2  : Mama
+Partener  : Sotie
+Nr. Copii : 2
+Copil  1  : Fiu
+Copil  2  : Fiica
+
+Persoana 19
+Nume      : Sora1
+Genul     : F
+Parinte1  : Tata
+Parinte2  : Mama
+Nr. Copii : 1
+Copil  1  : Nepot1
+
+Persoana 20
+Nume      : Frate1
+Genul     : M
+Parinte1  : Tata
+Parinte2  : Mama
+Partener  : Cumnata1
+Nr. Copii : 1
+Copil  1  : Nepoata1
+
+Persoana 21
+Nume      : Nepot1
+Genul     : M
+Parinte1  : Sora1
+
+Persoana 22
+Nume      : Nepoata1
+Genul     : F
+Parinte1  : Frate1
+Parinte2  : Cumnata1
+
+Persoana 23
+Nume      : Cumnata1
+Genul     : F
+Partener  : Frate1
+Nr. Copii : 1
+Copil  1  : Nepoata1
+
+Persoana 24
+Nume      : Fiu
+Genul     : M
+Parinte1  : Eu
+Parinte2  : Sotie
+Partener  : Nora1
+Nr. Copii : 1
+Copil  1  : Nepot3
+
+Persoana 25
+Nume      : Sotie
+Genul     : F
+Parinte1  : Soacra1
+Parinte2  : Socru1
+Partener  : Eu
+Nr. Copii : 2
+Copil  1  : Fiu
+Copil  2  : Fiica
+
+Persoana 26
+Nume      : Soacra1
+Genul     : F
+Partener  : Socru1
+Nr. Copii : 2
+Copil  1  : Sotie
+Copil  2  : Cumnat1
+
+Persoana 27
+Nume      : Cumnat1
+Genul     : M
+Parinte1  : Soacra1
+Parinte2  : Socru1
+Nr. Copii : 1
+Copil  1  : Nepot2
+
+Persoana 28
+Nume      : Socru1
+Genul     : M
+Partener  : Soacra1
+Nr. Copii : 2
+Copil  1  : Sotie
+Copil  2  : Cumnat1
+
+Persoana 29
+Nume      : Nepot2
+Genul     : M
+Parinte1  : Cumnat1
+
+Persoana 30
+Nume      : Nepot3
+Genul     : M
+Parinte1  : Fiu
+Parinte2  : Nora1
+
+Persoana 31
+Nume      : Nora1
+Genul     : F
+Parinte1  : Cuscru0
+Parinte2  : Cuscra0
+Partener  : Fiu
+Nr. Copii : 1
+Copil  1  : Nepot3
+
+Persoana 32
+Nume      : Cuscru0
+Genul     : M
+Partener  : Cuscra0
+Nr. Copii : 1
+Copil  1  : Nora1
+
+Persoana 33
+Nume      : Cuscra0
+Genul     : F
+Partener  : Cuscru0
+Nr. Copii : 1
+Copil  1  : Nora1
+
+Persoana 34
+Nume      : Fiica
+Genul     : F
+Parinte1  : Eu
+Parinte2  : Sotie
+Partener  : Ginere2
+Nr. Copii : 1
+Copil  1  : Nepoata3
+
+Persoana 35
+Nume      : Nepoata3
+Genul     : F
+Parinte1  : Fiica
+Parinte2  : Ginere2
+
+Persoana 36
+Nume      : Ginere2
+Genul     : M
+Partener  : Fiica
+Nr. Copii : 1
+Copil  1  : Nepoata3
 
